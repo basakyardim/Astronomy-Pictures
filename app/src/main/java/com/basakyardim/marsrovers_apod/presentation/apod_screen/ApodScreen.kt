@@ -1,4 +1,4 @@
-package com.basakyardim.marsrovers_apod.screens
+package com.basakyardim.marsrovers_apod.presentation.apod_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

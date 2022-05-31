@@ -1,4 +1,4 @@
-package com.basakyardim.marsrovers_apod.ui.theme
+package com.basakyardim.marsrovers_apod.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
