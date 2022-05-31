@@ -13,13 +13,13 @@ sealed class BottomNavItem(
     ,
 ) {
 
-    object Rovers: BottomNavItem(
+    object RoverItems: BottomNavItem(
         name = "Rovers",
         route = "rovers",
         icon =  Icons.Outlined.Home
     )
 
-    object Apod: BottomNavItem(
+    object ApodItem: BottomNavItem(
         name = "Astronomy Picture of the Day",
         route = "apod",
         icon = Icons.Outlined.Star

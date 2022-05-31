@@ -10,7 +10,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.basakyardim.marsrovers_apod.ui.theme.itemColor
+import com.basakyardim.marsrovers_apod.presentation.theme.itemColor
 
 @Composable
 fun BottomNavScreen() {
@@ -28,8 +28,8 @@ fun BottomNavScreen() {
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
-        BottomNavItem.Rovers,
-        BottomNavItem.Apod
+        BottomNavItem.RoverItems,
+        BottomNavItem.ApodItem
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
