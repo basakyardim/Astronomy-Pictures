@@ -22,7 +22,7 @@ class ApodListViewModel @Inject constructor(
     val state: State<ApodListState> = _state
 
     init {
-        getApods(start_date = "2022-06-04", api_key = Constants.API_KEY)
+        getApods(start_date = "2022-05-04", api_key = Constants.API_KEY)
     }
 
     private fun getApods(start_date: String, api_key: String) {

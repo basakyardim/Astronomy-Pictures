@@ -19,6 +19,7 @@ fun ApodDto.toApod(): Apod {
         date = date,
         explanation = explanation,
         hdurl = hdurl,
+        media_type = media_type,
         title = title,
         url = url
     )

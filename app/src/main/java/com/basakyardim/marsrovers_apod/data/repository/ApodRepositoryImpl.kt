@@ -12,13 +12,5 @@ class ApodRepositoryImpl @Inject constructor(
         return api.getApods(start_date, api_key)
     }
 
-    override suspend fun getApodbyDate(
-        start_date: String,
-        end_date: String,
-        api_key: String
-    ): List<ApodDto> {
-        return api.getApodbyDate(start_date, end_date, api_key)
-    }
-
 
 }

@@ -1,10 +1,7 @@
-package com.basakyardim.marsrovers_apod.presentation.apod_screen
+package com.basakyardim.marsrovers_apod.presentation.detail_screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
@@ -20,13 +17,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.basakyardim.marsrovers_apod.presentation.ScreenNavigation
 import com.basakyardim.marsrovers_apod.presentation.apod_screen.components.ApodListItem
-import com.basakyardim.marsrovers_apod.presentation.theme.itemColor
+import com.basakyardim.marsrovers_apod.presentation.detail_screen.components.ApodDetailItem
 
 @Composable
-fun ApodListScreen(
-    navController: NavController,
-    viewModel: ApodListViewModel = hiltViewModel()
+fun ApodDetailScreen(
+    viewModel: ApodDetailViewModel = hiltViewModel()
 ) {
+
     val state = viewModel.state.value
 
     Box(
@@ -34,17 +31,8 @@ fun ApodListScreen(
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.apods) { apod ->
-                ApodListItem(
-                    apod = apod,
-                    onItemClick = {
-                        navController.navigate(ScreenNavigation.ApodDetailScreen.route + "/${apod.date}")
-                    }
-                )
 
-            }
-        }
+
         if (state.error.isNotBlank()) {
             Text(
                 text = state.error,
@@ -59,10 +47,11 @@ fun ApodListScreen(
 
         if (state.isLoading) {
             CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = itemColor
+                modifier = Modifier
+                    .align(Alignment.Center)
             )
         }
 
     }
+
 }

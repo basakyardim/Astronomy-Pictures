@@ -20,14 +20,7 @@ class GetApodUseCase @Inject constructor(
     ): Flow<Resource<List<Apod>>> = flow {
         try {
             emit(Resource.Loading<List<Apod>>())
-            val apod =
-                repository.getApodbyDate(
-                    start_date = start_date,
-                    end_date = end_date,
-                    api_key = api_key
-                ).map { it.toApod() }
 
-            emit(Resource.Success(apod))
 
         } catch (e: HttpException) {
             emit(Resource.Error<List<Apod>>(e.localizedMessage ?: "An unexpected error occurred"))
