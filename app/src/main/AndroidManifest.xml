@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.basakyardim.marsrovers_apod">
+    package="com.basakyardim.astronomy_pictures">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".NasaApplication"
+        android:name="com.basakyardim.astronomy_pictures.NasaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MarsRoversApod">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name="com.basakyardim.astronomy_pictures.presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MarsRoversApod">
