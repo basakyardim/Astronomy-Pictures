@@ -2,10 +2,13 @@ package com.basakyardim.astronomy_pictures.presentation.apod_list_screen.compone
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
@@ -16,12 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.basakyardim.astronomy_pictures.domain.model.AstronomyPictures
 import com.basakyardim.astronomy_pictures.util.DEFAULT_IMAGE
-import com.basakyardim.astronomy_pictures.util.LoadPicture
+import com.basakyardim.astronomy_pictures.util.loadPicture
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSource
+
 
 @Composable
 fun ApodListItem(
@@ -30,42 +34,61 @@ fun ApodListItem(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(30.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+            .height(120.dp)
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+
     ) {
-        Text(
-            text = "${apod.title}",
-            style = MaterialTheme.typography.body2,
-            modifier = modifier.weight(1.2f),
-            color = Color.Black,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1
-        )
-        Spacer(modifier = Modifier.width(8.dp))
+        Column(
+            modifier = modifier.weight(1f)
+        ) {
+            Row(modifier = modifier.fillMaxWidth()) {
+                Text(
+                    text = "${apod.title}",
+                    style = MaterialTheme.typography.body2,
+                    modifier = modifier.weight(2f),
+                    color = Color.White,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
+                )
+                Spacer(modifier = Modifier.width(8.dp))
 
-        apod.url?.let { url ->
-            if (apod.media_type == "image") {
-                val image = LoadPicture(url = url, defaultImage = DEFAULT_IMAGE).value
-                image?.let { img ->
-                    Image(
-                        bitmap = img.asImageBitmap(),
-                        contentDescription = "APOD",
-                        modifier = modifier
-                            .fillMaxSize(0.2f),
-                        contentScale = ContentScale.Fit
-                    )
+                Card(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .weight(1f),
+                    shape = RoundedCornerShape(5.dp),
+                    elevation = 5.dp
+                ) {
+                    apod.url?.let { url ->
+                        if (apod.media_type == "image") {
+                            val image = loadPicture(url = url, defaultImage = DEFAULT_IMAGE).value
+                            image?.let { img ->
+                                Image(
+                                    bitmap = img.asImageBitmap(),
+                                    contentDescription = "APOD",
+                                    modifier = modifier
+                                        .fillMaxSize(0.2f),
+                                    contentScale = ContentScale.FillBounds
+
+                                )
+
+                            }
+                        } else if (apod.media_type == "video") {
+                            Box(Modifier.fillMaxSize(0.2f)) {
+                                PlayVideo(url = apod.url.toString())
+                            }
+
+                        }
+
+
+                    }
 
                 }
-            } else if (apod.media_type == "video") {
-                Box(Modifier.fillMaxSize(0.2f)) {
-                    PlayVideo(url = apod.url.toString())
-                }
-
             }
 
-
         }
+
 
     }
 }
@@ -103,6 +126,7 @@ fun PlayVideo(url: String) {
                 DefaultDataSource.Factory(
                     context, defaultDataSourceFactory
                 )
+
             val mediaItem = MediaItem.fromUri(url)
             val source =
                 ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(mediaItem)

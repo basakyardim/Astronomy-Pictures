@@ -44,12 +44,15 @@ fun ApodListScreen(
                 text = "Astronomy Picture of the Day",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = Color.White
             )
         }
 
-        LazyColumn(modifier = Modifier.fillMaxSize()
-            .padding(top = 50.dp)) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 50.dp)
+        ) {
             items(state.apods.size) { i ->
                 val apod = state.apods[i]
                 ApodListItem(
@@ -59,16 +62,12 @@ fun ApodListScreen(
                             navigator.navigate(
                                 ApodDetailScreenDestination(id = (i + 1))
                             )
-
                         }
                 )
                 if (i < state.apods.size) {
-                    Divider(
-                        modifier = Modifier
-                            .padding(horizontal = 16.dp)
-                    )
+                    Divider(modifier = Modifier
+                            .padding(horizontal = 16.dp))
                 }
-
 
             }
         }
@@ -87,7 +86,7 @@ fun ApodListScreen(
         if (state.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center),
-                color = Color.Black
+                color = Color.White
             )
         }
 

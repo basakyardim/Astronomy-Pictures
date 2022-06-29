@@ -9,6 +9,8 @@ import com.basakyardim.astronomy_pictures.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +21,8 @@ class ApodListViewModel @Inject constructor(
     val state: State<ApodListState> = _state
 
     init {
-        getApods(start_date = "2022-05-01")
+        val startDate = getStartDate()
+        getApods(start_date = startDate)
     }
 
     private fun getApods(start_date: String) {
@@ -38,6 +41,14 @@ class ApodListViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun getStartDate(): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MONTH, -1)
+        val date = calendar.time
+        val format = SimpleDateFormat("yyyy-MM-dd")
+        return format.format(date)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.basakyardim.astronomy_pictures.db
+package com.basakyardim.astronomy_pictures.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

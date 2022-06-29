@@ -3,20 +3,21 @@
     package="com.basakyardim.astronomy_pictures">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name="com.basakyardim.astronomy_pictures.NasaApplication"
+        android:name=".NasaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MarsRoversApod">
+        android:theme="@style/Theme.AstronomyPictures">
         <activity
             android:name="com.basakyardim.astronomy_pictures.presentation.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MarsRoversApod">
+            android:theme="@style/Theme.AstronomyPictures">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
