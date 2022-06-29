@@ -1,6 +1,9 @@
 package com.basakyardim.astronomy_pictures.presentation.detail_screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -28,28 +31,29 @@ fun ApodDetailScreen(
             .fillMaxSize()
     ) {
 
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = Color.Black,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.Center)
-            )
-        }
+        when {
+            state.error.isNotBlank() -> {
+                Text(
+                    text = state.error,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            state.isLoading -> {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(Alignment.Center),
+                    color = Color.White
+                )
+            }
+            else -> {
+                state.apod?.let { ApodDetailItem(apod = it) }
 
-        else if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .align(Alignment.Center),
-                    color = Color.Black
-            )
-        }
-        else {
-            state.apod?.let { ApodDetailItem(apod = it) }
-
+            }
         }
 
     }

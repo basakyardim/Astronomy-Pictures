@@ -17,10 +17,10 @@ class ApodRepositoryImpl @Inject constructor(
     private val dao: PicturesDao
 ) : ApodRepository {
 
-    override fun getApods(start_date: String): Flow<Resource<List<AstronomyPictures>>>  = flow {
+    override fun getApods(start_date: String): Flow<Resource<List<AstronomyPictures>>> = flow {
 
         emit(Resource.Loading())
-        val pictures = dao.getAllApods().map { it?.toAstronomyPictures() }
+        val pictures = dao.getAllApods().map { it.toAstronomyPictures() }
         emit(Resource.Loading(pictures))
 
         try {
@@ -53,9 +53,7 @@ class ApodRepositoryImpl @Inject constructor(
 
     override suspend fun getApodDetail(id: Int): Resource<AstronomyPictures?> {
         val detailInfo = dao.getApodById(id)?.toAstronomyPictures()
-        print(id)
         return Resource.Success(detailInfo)
-
     }
 }
 

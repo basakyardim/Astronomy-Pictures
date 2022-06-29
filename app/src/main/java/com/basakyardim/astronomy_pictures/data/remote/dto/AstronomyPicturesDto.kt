@@ -1,6 +1,6 @@
 package com.basakyardim.astronomy_pictures.data.remote.dto
 
-import com.basakyardim.astronomy_pictures.db.PicturesEntity
+import com.basakyardim.astronomy_pictures.data.local.PicturesEntity
 
 data class AstronomyPicturesDto(
     val copyright: String,

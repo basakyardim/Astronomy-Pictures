@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ApodDetailViewModel @Inject constructor(
     private val apodDetailUseCase: ApodDetailUseCase,
     private val savedStateHandle: SavedStateHandle,
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = mutableStateOf(ApodDetailState())
     val state: State<ApodDetailState> = _state
@@ -30,20 +30,19 @@ class ApodDetailViewModel @Inject constructor(
     }
 
     private suspend fun getApodDetail(id: Int) {
-        val info = apodDetailUseCase(id)
-            when (info) {
-                is Resource.Success<*> -> {
-                    _state.value = ApodDetailState(apod = info.data)
-                }
-                is Resource.Error<*> -> {
-                    _state.value = ApodDetailState(
-                        error = info.message ?: "An unexpected error occurred."
-                    )
-                }
-                is Resource.Loading<*> -> {
-                    _state.value = ApodDetailState(isLoading = true)
-                }
+        when (val info = apodDetailUseCase(id)) {
+            is Resource.Success<*> -> {
+                _state.value = ApodDetailState(apod = info.data)
             }
+            is Resource.Error<*> -> {
+                _state.value = ApodDetailState(
+                    error = info.message ?: "An unexpected error occurred."
+                )
+            }
+            is Resource.Loading<*> -> {
+                _state.value = ApodDetailState(isLoading = true)
+            }
+        }
 
     }
 

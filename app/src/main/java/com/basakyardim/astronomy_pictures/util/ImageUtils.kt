@@ -14,15 +14,14 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 
 
-const val DEFAULT_IMAGE = R.drawable.empty_img
+const val DEFAULT_IMAGE = R.mipmap.empty_img
 @Composable
-fun LoadPicture(
+fun loadPicture(
     url: String,
     @DrawableRes defaultImage: Int
 ): MutableState<Bitmap?> {
 
     val bitmapState: MutableState<Bitmap?> = remember { mutableStateOf(null) }
-
 
     Glide.with(LocalContext.current)
         .asBitmap()
