@@ -15,6 +15,7 @@ import com.bumptech.glide.request.transition.Transition
 
 
 const val DEFAULT_IMAGE = R.mipmap.empty_img
+
 @Composable
 fun loadPicture(
     url: String,
@@ -26,7 +27,7 @@ fun loadPicture(
     Glide.with(LocalContext.current)
         .asBitmap()
         .load(defaultImage)
-        .into(object: CustomTarget<Bitmap>() {
+        .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState.value = resource
             }
@@ -39,7 +40,7 @@ fun loadPicture(
     Glide.with(LocalContext.current)
         .asBitmap()
         .load(url)
-        .into(object: CustomTarget<Bitmap>() {
+        .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState.value = resource
             }

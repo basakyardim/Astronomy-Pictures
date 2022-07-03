@@ -12,14 +12,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.basakyardim.astronomy_pictures.domain.model.AstronomyPictures
-import com.basakyardim.astronomy_pictures.presentation.apod_list_screen.components.PlayVideo
 import com.basakyardim.astronomy_pictures.util.DEFAULT_IMAGE
+import com.basakyardim.astronomy_pictures.util.LoadVideo
 import com.basakyardim.astronomy_pictures.util.loadPicture
 
 @Composable
 fun ApodDetailItem(
     apod: AstronomyPictures
-    ) {
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +56,7 @@ fun ApodDetailItem(
                         .align(CenterHorizontally)
                         .padding(top = 20.dp, bottom = 20.dp)
                 ) {
-                    PlayVideo(url = apod.url.toString())
+                    LoadVideo(url = apod.url)
                 }
 
             }
@@ -65,10 +65,10 @@ fun ApodDetailItem(
 
         apod.explanation?.let {
             Text(
-            text = it,
-            fontSize = 12.sp,
-            color = Color.White,
-            textAlign = TextAlign.Center
+                text = it,
+                fontSize = 12.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center
             )
         }
 

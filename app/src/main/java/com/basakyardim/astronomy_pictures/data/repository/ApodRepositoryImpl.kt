@@ -25,13 +25,14 @@ class ApodRepositoryImpl @Inject constructor(
 
         try {
             val remotePictures = api.fetchPictures(start_date = start_date)
+
             dao.deleteFromDb()
             dao.insertApods(remotePictures.map { it.toPicturesEntity() })
 
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = "Oops, æsomething went wrong!",
+                    message = "Oops, something went wrong!",
                     data = pictures
                 )
             )

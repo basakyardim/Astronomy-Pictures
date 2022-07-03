@@ -65,8 +65,10 @@ fun ApodListScreen(
                         }
                 )
                 if (i < state.apods.size) {
-                    Divider(modifier = Modifier
-                            .padding(horizontal = 16.dp))
+                    Divider(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                    )
                 }
 
             }
