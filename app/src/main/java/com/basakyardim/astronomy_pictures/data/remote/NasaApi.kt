@@ -1,7 +1,6 @@
 package com.basakyardim.astronomy_pictures.data.remote
 
 import com.basakyardim.astronomy_pictures.BuildConfig
-import com.basakyardim.astronomy_pictures.data.remote.NasaApi.Companion.API_KEY
 import com.basakyardim.astronomy_pictures.data.remote.dto.AstronomyPicturesDto
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,7 +15,6 @@ interface NasaApi {
     companion object {
         const val API_KEY = BuildConfig.API_KEY
         const val BASE_URL = "https://api.nasa.gov/"
-
 
     }
 
